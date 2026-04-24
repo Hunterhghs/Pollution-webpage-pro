@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCalculator();
     initPledge();
     initScrollAnimations();
+    initMobileHotspots();
 });
 
 /* ============================================
@@ -120,21 +121,36 @@ function initNavbar() {
     const links = document.getElementById('nav-links');
     const navAnchors = links.querySelectorAll('a');
 
+    const overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    document.body.appendChild(overlay);
+
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 50);
         updateActiveNav();
     });
 
+    function closeMenu() {
+        toggle.classList.remove('open');
+        links.classList.remove('open');
+        overlay.classList.remove('open');
+    }
+
     toggle.addEventListener('click', () => {
-        toggle.classList.toggle('open');
-        links.classList.toggle('open');
+        const isOpen = toggle.classList.contains('open');
+        if (isOpen) {
+            closeMenu();
+        } else {
+            toggle.classList.add('open');
+            links.classList.add('open');
+            overlay.classList.add('open');
+        }
     });
 
+    overlay.addEventListener('click', closeMenu);
+
     navAnchors.forEach(a => {
-        a.addEventListener('click', () => {
-            toggle.classList.remove('open');
-            links.classList.remove('open');
-        });
+        a.addEventListener('click', closeMenu);
     });
 
     function updateActiveNav() {
@@ -514,7 +530,7 @@ function renderChart(key) {
 
     document.getElementById('data-insights').innerHTML = `
         <div class="insight-card">
-            <div class="insight-icon">📊</div>
+            <div class="insight-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></div>
             <p>${config.insight}</p>
         </div>
     `;
@@ -824,13 +840,20 @@ function calculateFootprint() {
     document.getElementById('your-bar').style.width = `${barPct}%`;
     document.getElementById('your-value').textContent = `${total.toFixed(1)}t`;
 
+    const svgCar = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14V9l-3-5H8L5 9v8z"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M5 9h14"/></svg>';
+    const svgPlane = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>';
+    const svgBolt = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>';
+    const svgLeaf = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M12 22c-4-4-8-8-8-14a8 8 0 0 1 16 0c0 6-4 10-8 14z"/><path d="M12 10v6m-3-3h6"/></svg>';
+    const svgBag = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
+    const svgCheck = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>';
+
     const tips = [];
-    if (drivingCO2 > 3) tips.push({ icon: '🚗', text: `<strong>Reduce driving</strong> — your commute adds ${drivingCO2.toFixed(1)}t CO₂/year. Consider carpooling, public transit, or an EV.` });
-    if (flightsCO2 > 1.5) tips.push({ icon: '✈️', text: `<strong>Fly less</strong> — your flights generate ${flightsCO2.toFixed(1)}t CO₂/year. Take trains for shorter trips.` });
-    if (electricityCO2 > 2) tips.push({ icon: '⚡', text: `<strong>Switch to renewables</strong> — your electricity accounts for ${electricityCO2.toFixed(1)}t CO₂/year.` });
-    if (diet === 'heavy-meat') tips.push({ icon: '🥩', text: `<strong>Eat less meat</strong> — a plant-rich diet could save up to 2.2t CO₂/year.` });
-    if (shoppingCO2 > 1) tips.push({ icon: '🛍️', text: `<strong>Buy less, choose better</strong> — consumer goods add ${shoppingCO2.toFixed(1)}t CO₂/year. Choose secondhand or sustainable brands.` });
-    if (tips.length === 0) tips.push({ icon: '🌱', text: `<strong>Great job!</strong> Your footprint is below the global average. Keep it up and consider offsetting what remains.` });
+    if (drivingCO2 > 3) tips.push({ icon: svgCar, text: `<strong>Reduce driving</strong> — your commute adds ${drivingCO2.toFixed(1)}t CO2/year. Consider carpooling, public transit, or an EV.` });
+    if (flightsCO2 > 1.5) tips.push({ icon: svgPlane, text: `<strong>Fly less</strong> — your flights generate ${flightsCO2.toFixed(1)}t CO2/year. Take trains for shorter trips.` });
+    if (electricityCO2 > 2) tips.push({ icon: svgBolt, text: `<strong>Switch to renewables</strong> — your electricity accounts for ${electricityCO2.toFixed(1)}t CO2/year.` });
+    if (diet === 'heavy-meat') tips.push({ icon: svgLeaf, text: `<strong>Eat less meat</strong> — a plant-rich diet could save up to 2.2t CO2/year.` });
+    if (shoppingCO2 > 1) tips.push({ icon: svgBag, text: `<strong>Buy less, choose better</strong> — consumer goods add ${shoppingCO2.toFixed(1)}t CO2/year. Choose secondhand or sustainable brands.` });
+    if (tips.length === 0) tips.push({ icon: svgCheck, text: `<strong>Great job!</strong> Your footprint is below the global average. Keep it up and consider offsetting what remains.` });
 
     document.getElementById('reduction-tips').innerHTML = '<h4>Top Ways to Reduce Your Footprint</h4>' +
         tips.map(t => `<div class="tip-item"><div class="tip-icon">${t.icon}</div><div class="tip-text">${t.text}</div></div>`).join('');
@@ -915,6 +938,24 @@ window.sharePledge = function(platform) {
 /* ============================================
    SCROLL ANIMATIONS
    ============================================ */
+
+function initMobileHotspots() {
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isTouchDevice) return;
+
+    document.querySelectorAll('.hotspot').forEach(hotspot => {
+        hotspot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const wasActive = hotspot.classList.contains('active');
+            document.querySelectorAll('.hotspot.active').forEach(h => h.classList.remove('active'));
+            if (!wasActive) hotspot.classList.add('active');
+        });
+    });
+
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.hotspot.active').forEach(h => h.classList.remove('active'));
+    });
+}
 
 function initScrollAnimations() {
     const observer = new IntersectionObserver(entries => {

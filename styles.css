@@ -236,7 +236,14 @@ body {
 }
 
 .logo-icon {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+}
+
+.logo-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .nav-links {
@@ -409,47 +416,6 @@ body {
     animation: fadeInUp 0.8s ease-out 0.8s both;
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    animation: fadeIn 1s ease-out 1.5s both;
-}
-
-.scroll-indicator span {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.mouse {
-    width: 24px;
-    height: 38px;
-    border: 2px solid var(--text-muted);
-    border-radius: 12px;
-    position: relative;
-}
-
-.wheel {
-    width: 3px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 2px;
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scroll-wheel 2s ease-in-out infinite;
-}
-
-@keyframes scroll-wheel {
-    0% { opacity: 1; top: 8px; }
-    100% { opacity: 0; top: 22px; }
-}
 
 /* ============================================
    TYPES OF POLLUTION
@@ -534,6 +500,10 @@ body {
     overflow: hidden;
     transition: max-height 0.5s ease, opacity 0.3s ease;
     opacity: 0;
+}
+
+.type-card.expanded {
+    grid-column: 1 / -1;
 }
 
 .type-card.expanded .card-details {
@@ -685,8 +655,14 @@ body {
 }
 
 .insight-icon {
-    font-size: 2rem;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--accent-glow);
+    border-radius: var(--radius-sm);
 }
 
 .insight-card p {
@@ -933,6 +909,50 @@ body {
     50% { transform: translateY(-10px) rotate(15deg); }
 }
 
+/* Climate Panel — compact layout */
+.climate-panel.active {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.climate-top {
+    display: flex;
+    gap: 32px;
+    align-items: start;
+}
+
+.climate-info-brief {
+    flex: 1;
+}
+
+.climate-info-brief h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.climate-info-brief p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.climate-metrics {
+    flex-shrink: 0;
+    display: flex;
+    gap: 12px;
+}
+
+.climate-metrics .metric {
+    padding: 14px 16px;
+}
+
+.climate-chart-wrap {
+    width: 100%;
+}
+
 /* Temperature Chart */
 .temp-timeline {
     background: var(--bg-card);
@@ -943,9 +963,13 @@ body {
 
 .temp-timeline h4 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    margin-bottom: 16px;
-    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+}
+
+.temp-timeline canvas {
+    max-height: 260px;
 }
 
 /* Species Grid */
@@ -969,8 +993,14 @@ body {
 }
 
 .species-icon {
-    font-size: 2rem;
     margin-bottom: 8px;
+    color: var(--accent);
+    display: flex;
+}
+
+.species-icon svg {
+    width: 32px;
+    height: 32px;
 }
 
 .species-card h4 {
@@ -1531,8 +1561,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
     z-index: 1;
+    color: var(--accent);
+}
+
+.timeline-icon svg {
+    width: 20px;
+    height: 20px;
 }
 
 .timeline-content {
@@ -1828,6 +1863,21 @@ body {
 }
 
 @media (max-width: 768px) {
+    .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 998;
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition);
+    }
+
+    .nav-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
     .nav-links {
         position: fixed;
         top: 0;
@@ -1842,6 +1892,11 @@ body {
         z-index: 999;
     }
 
+    .nav-links a {
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+
     .nav-links.open {
         right: 0;
     }
@@ -1849,6 +1904,10 @@ body {
     .nav-toggle {
         display: flex;
         z-index: 1001;
+        min-width: 44px;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
     }
 
     .nav-toggle.open span:nth-child(1) {
@@ -1863,6 +1922,11 @@ body {
         transform: rotate(-45deg) translate(5px, -5px);
     }
 
+    .hero {
+        min-height: 0;
+        padding: 100px 20px 60px;
+    }
+
     .hero-stats {
         flex-direction: column;
         gap: 24px;
@@ -1871,10 +1935,20 @@ body {
     .hero-cta {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        max-width: 300px;
     }
 
     .types-grid {
         grid-template-columns: 1fr;
+    }
+
+    .type-card.expanded {
+        grid-column: 1;
     }
 
     .chart-controls {
@@ -1882,8 +1956,14 @@ body {
     }
 
     .chart-btn {
-        padding: 8px 16px;
+        padding: 10px 14px;
         font-size: 0.8rem;
+        min-height: 44px;
+    }
+
+    .chart-container {
+        padding: 16px;
+        min-height: 300px;
     }
 
     .impact-tabs {
@@ -1891,12 +1971,22 @@ body {
     }
 
     .impact-tab {
-        padding: 8px 16px;
+        padding: 10px 14px;
         font-size: 0.8rem;
+        min-height: 44px;
     }
 
     .impact-metrics {
         grid-template-columns: 1fr;
+    }
+
+    .climate-top {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .climate-metrics {
+        flex-direction: column;
     }
 
     .species-grid {
@@ -1906,11 +1996,35 @@ body {
     .quiz-container,
     .calc-form,
     .calc-result {
-        padding: 28px;
+        padding: 24px 20px;
+        border-radius: var(--radius-lg);
+    }
+
+    .quiz-option {
+        padding: 14px 16px;
+        min-height: 48px;
     }
 
     .radio-group {
         grid-template-columns: 1fr;
+    }
+
+    .radio-option {
+        min-height: 48px;
+    }
+
+    .range-slider {
+        height: 8px;
+    }
+
+    .range-slider::-webkit-slider-thumb {
+        width: 28px;
+        height: 28px;
+    }
+
+    .range-slider::-moz-range-thumb {
+        width: 28px;
+        height: 28px;
     }
 
     .comparison-item {
@@ -1928,7 +2042,11 @@ body {
     }
 
     .section {
-        padding: 80px 0;
+        padding: 72px 0;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
     }
 
     .action-timeline {
@@ -1939,11 +2057,50 @@ body {
         left: -32px;
         width: 32px;
         height: 32px;
-        font-size: 1rem;
+    }
+
+    .timeline-icon svg {
+        width: 16px;
+        height: 16px;
     }
 
     .pledge-card {
-        padding: 28px;
+        padding: 24px 20px;
+    }
+
+    .pledge-option {
+        padding: 14px 16px;
+        min-height: 48px;
+    }
+
+    .hotspot {
+        width: 28px;
+        height: 28px;
+    }
+
+    .hotspot-tooltip {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        top: auto;
+        bottom: 20px;
+        width: auto;
+        transform: none;
+        z-index: 100;
+    }
+
+    .hotspot.active .hotspot-tooltip {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .body-outline {
+        height: 320px;
+    }
+
+    .btn {
+        padding: 14px 28px;
+        min-height: 48px;
     }
 }
 

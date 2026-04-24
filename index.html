@@ -19,7 +19,7 @@
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <a href="#" class="nav-logo">
-            <span class="logo-icon">&#127758;</span>
+            <span class="logo-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg></span>
             <span>PollutionAware</span>
         </a>
         <ul class="nav-links" id="nav-links">
@@ -65,12 +65,6 @@
             <a href="#types" class="btn btn-primary">Explore the Crisis</a>
             <a href="#quiz" class="btn btn-secondary">Test Your Knowledge</a>
         </div>
-    </div>
-    <div class="scroll-indicator">
-        <div class="mouse">
-            <div class="wheel"></div>
-        </div>
-        <span>Scroll to explore</span>
     </div>
 </section>
 
@@ -321,7 +315,7 @@
 
         <div class="data-insights" id="data-insights">
             <div class="insight-card">
-                <div class="insight-icon">&#128200;</div>
+                <div class="insight-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></div>
                 <p>CO&#8322; emissions have increased by <strong>60%</strong> since 1990, with the top 10 countries responsible for over 67% of global emissions.</p>
             </div>
         </div>
@@ -422,9 +416,9 @@
                             <div class="ocean-layer" data-depth="surface">
                                 <div class="layer-label">Surface (0-200m)</div>
                                 <div class="floating-debris">
-                                    <span class="debris debris-1">&#9741;</span>
-                                    <span class="debris debris-2">&#9741;</span>
-                                    <span class="debris debris-3">&#9741;</span>
+                                    <span class="debris debris-1"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 6h6M5 10h6"/></svg></span>
+                                    <span class="debris debris-2"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5 8h6"/></svg></span>
+                                    <span class="debris debris-3"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><polygon points="8,2 14,14 2,14"/></svg></span>
                                 </div>
                                 <p>Oil slicks, floating plastic, and chemical runoff concentrate at the surface, blocking sunlight and releasing toxins.</p>
                             </div>
@@ -458,29 +452,31 @@
                     </div>
                 </div>
 
-                <div class="impact-panel" id="panel-climate">
-                    <div class="impact-visual">
-                        <div class="temp-timeline">
-                            <h4>Global Temperature Anomaly</h4>
-                            <canvas id="temp-chart"></canvas>
+                <div class="impact-panel climate-panel" id="panel-climate">
+                    <div class="climate-top">
+                        <div class="climate-info-brief">
+                            <h3>The Climate-Pollution Connection</h3>
+                            <p>Air pollution and climate change are deeply intertwined. Fossil fuel burning is the primary driver of both crises.</p>
                         </div>
-                    </div>
-                    <div class="impact-info">
-                        <h3>The Climate-Pollution Connection</h3>
-                        <p>Air pollution and climate change are deeply intertwined. Fossil fuel burning is the primary driver of both crises.</p>
-                        <div class="impact-metrics">
+                        <div class="impact-metrics climate-metrics">
                             <div class="metric">
                                 <span class="metric-value">1.2°C</span>
-                                <span class="metric-label">Warming since pre-industrial era</span>
+                                <span class="metric-label">Warming since pre-industrial</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-value">420ppm</span>
-                                <span class="metric-label">Current CO&#8322; concentration</span>
+                                <span class="metric-label">CO&#8322; concentration</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-value">2050</span>
-                                <span class="metric-label">Net-zero deadline for 1.5°C target</span>
+                                <span class="metric-label">Net-zero deadline</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="climate-chart-wrap">
+                        <div class="temp-timeline">
+                            <h4>Global Temperature Anomaly (°C vs. 1951-1980 avg)</h4>
+                            <canvas id="temp-chart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -489,37 +485,37 @@
                     <div class="impact-visual">
                         <div class="species-grid">
                             <div class="species-card">
-                                <div class="species-icon">&#128011;</div>
+                                <div class="species-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="16" cy="17" rx="10" ry="7"/><circle cx="10" cy="17" r="3"/><path d="M6 14l-3-3m0 9l3-3m20-3l3-3m0 9l-3-3"/><path d="M20 12l2-4m-6 2v-4"/></svg></div>
                                 <h4>Sea Turtles</h4>
                                 <div class="threat-bar"><div class="threat-fill" style="width:70%"></div></div>
                                 <span class="threat-label">52% ingest plastic debris</span>
                             </div>
                             <div class="species-card">
-                                <div class="species-icon">&#128029;</div>
+                                <div class="species-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="16" cy="20" r="6"/><circle cx="16" cy="11" r="4"/><path d="M12 20l-5 4m14-4l5 4M11 9l-4-4m12 4l4-4"/></svg></div>
                                 <h4>Insects</h4>
                                 <div class="threat-bar"><div class="threat-fill" style="width:85%"></div></div>
                                 <span class="threat-label">40% species declining from pesticides</span>
                             </div>
                             <div class="species-card">
-                                <div class="species-icon">&#128038;</div>
+                                <div class="species-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18c6-10 10-12 12-12s6 2 12 12"/><path d="M16 6v10l-5 4m5-4l5 4"/></svg></div>
                                 <h4>Seabirds</h4>
                                 <div class="threat-bar"><div class="threat-fill" style="width:60%"></div></div>
                                 <span class="threat-label">90% have plastic in stomachs</span>
                             </div>
                             <div class="species-card">
-                                <div class="species-icon">&#128031;</div>
+                                <div class="species-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 16c0-6 6-10 13-10l-4 10 4 10c-7 0-13-4-13-10z"/><circle cx="17" cy="14" r="1.5" fill="currentColor"/><path d="M25 12l3-2m-3 8l3 2"/></svg></div>
                                 <h4>Fish</h4>
                                 <div class="threat-bar"><div class="threat-fill" style="width:55%"></div></div>
                                 <span class="threat-label">Microplastics found in 33% of fish caught</span>
                             </div>
                             <div class="species-card">
-                                <div class="species-icon">&#128008;</div>
+                                <div class="species-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="16" cy="19" rx="6" ry="8"/><circle cx="16" cy="9" r="4"/><path d="M10 19h12m-12 4h12M9 7l-4-4m14 4l4-4"/></svg></div>
                                 <h4>Pollinators</h4>
                                 <div class="threat-bar"><div class="threat-fill" style="width:75%"></div></div>
                                 <span class="threat-label">75% of crops depend on pollinators at risk</span>
                             </div>
                             <div class="species-card">
-                                <div class="species-icon">&#127882;</div>
+                                <div class="species-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 28v-14"/><path d="M16 14c-3-4-7-7-9-11"/><path d="M16 14c3-4 7-7 9-11"/><path d="M10 22c-3-2-6-3-7-4"/><path d="M22 22c3-2 6-3 7-4"/><path d="M13 18c-2-1-5-2-7-1m14 1c2-1 5-2 7-1"/></svg></div>
                                 <h4>Coral Reefs</h4>
                                 <div class="threat-bar"><div class="threat-fill" style="width:90%"></div></div>
                                 <span class="threat-label">70-90% will die at 1.5°C warming</span>
@@ -764,7 +760,7 @@
 
         <div class="action-timeline">
             <div class="timeline-item" data-aos="fade-right">
-                <div class="timeline-icon">&#127793;</div>
+                <div class="timeline-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22v-8"/><path d="M12 14c-3-4-3-8 0-11"/><path d="M12 14c3-4 3-8 0-11"/></svg></div>
                 <div class="timeline-content">
                     <h3>Start Small</h3>
                     <ul class="action-list">
@@ -777,7 +773,7 @@
             </div>
 
             <div class="timeline-item" data-aos="fade-left">
-                <div class="timeline-icon">&#127757;</div>
+                <div class="timeline-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg></div>
                 <div class="timeline-content">
                     <h3>Make Changes at Home</h3>
                     <ul class="action-list">
@@ -790,7 +786,7 @@
             </div>
 
             <div class="timeline-item" data-aos="fade-right">
-                <div class="timeline-icon">&#128227;</div>
+                <div class="timeline-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
                 <div class="timeline-content">
                     <h3>Spread the Word</h3>
                     <ul class="action-list">
@@ -803,7 +799,7 @@
             </div>
 
             <div class="timeline-item" data-aos="fade-left">
-                <div class="timeline-icon">&#127775;</div>
+                <div class="timeline-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <div class="timeline-content">
                     <h3>Think Big</h3>
                     <ul class="action-list">
@@ -873,7 +869,7 @@
         <div class="footer-content">
             <div class="footer-main">
                 <div class="footer-logo">
-                    <span class="logo-icon">&#127758;</span>
+                    <span class="logo-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg></span>
                     <span>PollutionAware</span>
                 </div>
                 <p>An interactive educational resource about the global pollution crisis. Data sourced from WHO, EPA, UN Environment Programme, and peer-reviewed research.</p>
