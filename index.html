@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Pollution | Interactive Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+</head>
+<body>
+
+<!-- Particle Background -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">
+            <span class="logo-icon">&#127758;</span>
+            <span>PollutionAware</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#types">Types</a></li>
+            <li><a href="#data">Data</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#calculator">Calculator</a></li>
+            <li><a href="#action">Take Action</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <div class="hero-badge">Environmental Crisis</div>
+        <h1 class="hero-title">
+            <span class="title-line">Our Planet Is</span>
+            <span class="title-line title-highlight" id="typed-text"></span>
+            <span class="cursor">|</span>
+        </h1>
+        <p class="hero-subtitle">Every year, pollution kills over <strong>9 million people</strong> worldwide — more than war, terrorism, malaria, HIV, tuberculosis, drugs, and alcohol combined.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number" data-target="9000000" data-suffix="">0</span>
+                <span class="stat-label">Deaths per year</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="91" data-suffix="%">0</span>
+                <span class="stat-label">World breathes polluted air</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="14" data-suffix="M tons">0</span>
+                <span class="stat-label">Plastic enters oceans yearly</span>
+            </div>
+        </div>
+        <div class="hero-cta">
+            <a href="#types" class="btn btn-primary">Explore the Crisis</a>
+            <a href="#quiz" class="btn btn-secondary">Test Your Knowledge</a>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+        <span>Scroll to explore</span>
+    </div>
+</section>
+
+<!-- Types of Pollution -->
+<section class="section types-section" id="types">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Categories</span>
+            <h2 class="section-title">Types of Pollution</h2>
+            <p class="section-desc">Click each card to explore the different forms of pollution devastating our planet.</p>
+        </div>
+
+        <div class="types-grid">
+            <div class="type-card" data-type="air">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                        <path d="M12 28c0-8 6-14 14-14s14 6 14 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M18 36c0-5 4-9 9-9s9 4 9 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M24 44c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>Air Pollution</h3>
+                <p class="card-preview">Contamination of indoor or outdoor air by harmful substances.</p>
+                <div class="card-details">
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <strong>7M</strong>
+                            <span>Deaths/year (WHO)</span>
+                        </div>
+                        <div class="detail-stat">
+                            <strong>#1</strong>
+                            <span>Environmental health risk</span>
+                        </div>
+                    </div>
+                    <h4>Major Sources</h4>
+                    <ul>
+                        <li>Vehicle emissions and fossil fuel combustion</li>
+                        <li>Industrial manufacturing and power plants</li>
+                        <li>Agricultural activities and crop burning</li>
+                        <li>Household cooking with solid fuels</li>
+                    </ul>
+                    <h4>Health Effects</h4>
+                    <p>Respiratory diseases, heart disease, stroke, lung cancer, and chronic obstructive pulmonary disease (COPD). Children and elderly are most vulnerable.</p>
+                </div>
+                <span class="card-expand">Click to expand</span>
+            </div>
+
+            <div class="type-card" data-type="water">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                        <path d="M32 12c0 0-16 18-16 28a16 16 0 0 0 32 0c0-10-16-28-16-28z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M24 38a8 8 0 0 0 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h3>Water Pollution</h3>
+                <p class="card-preview">Contamination of water bodies like rivers, lakes, and oceans.</p>
+                <div class="card-details">
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <strong>2B</strong>
+                            <span>People lack safe water</span>
+                        </div>
+                        <div class="detail-stat">
+                            <strong>80%</strong>
+                            <span>Wastewater untreated</span>
+                        </div>
+                    </div>
+                    <h4>Major Sources</h4>
+                    <ul>
+                        <li>Industrial discharge and chemical runoff</li>
+                        <li>Agricultural pesticides and fertilizers</li>
+                        <li>Untreated sewage and wastewater</li>
+                        <li>Oil spills and plastic waste</li>
+                    </ul>
+                    <h4>Health Effects</h4>
+                    <p>Waterborne diseases like cholera, dysentery, and typhoid. Long-term exposure to contaminated water causes cancer, neurological disorders, and reproductive problems.</p>
+                </div>
+                <span class="card-expand">Click to expand</span>
+            </div>
+
+            <div class="type-card" data-type="soil">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                        <rect x="16" y="32" width="32" height="16" rx="2" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M22 32v-6m10-8v14m8-4v4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="22" cy="23" r="3" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="32" cy="15" r="3" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="40" cy="25" r="2" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>Soil Pollution</h3>
+                <p class="card-preview">Presence of toxic chemicals in soil at dangerous concentrations.</p>
+                <div class="card-details">
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <strong>33%</strong>
+                            <span>Global soil is degraded</span>
+                        </div>
+                        <div class="detail-stat">
+                            <strong>$400B</strong>
+                            <span>Annual cost of soil erosion</span>
+                        </div>
+                    </div>
+                    <h4>Major Sources</h4>
+                    <ul>
+                        <li>Pesticides and herbicides from agriculture</li>
+                        <li>Mining operations and heavy metals</li>
+                        <li>Improper waste disposal and landfills</li>
+                        <li>Industrial spills and leakage</li>
+                    </ul>
+                    <h4>Health Effects</h4>
+                    <p>Contaminated crops enter the food chain. Lead, mercury, and arsenic in soil cause neurological damage, kidney disease, and various cancers.</p>
+                </div>
+                <span class="card-expand">Click to expand</span>
+            </div>
+
+            <div class="type-card" data-type="noise">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                        <rect x="20" y="24" width="8" height="16" rx="1" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M28 24l10-8v32l-10-8" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M42 24c2 2 3 5 3 8s-1 6-3 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M46 20c3 3 5 7 5 12s-2 9-5 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>Noise Pollution</h3>
+                <p class="card-preview">Excessive or harmful levels of noise in the environment.</p>
+                <div class="card-details">
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <strong>1.1B</strong>
+                            <span>Young people at risk</span>
+                        </div>
+                        <div class="detail-stat">
+                            <strong>12K+</strong>
+                            <span>Premature deaths in EU</span>
+                        </div>
+                    </div>
+                    <h4>Major Sources</h4>
+                    <ul>
+                        <li>Traffic and transportation noise</li>
+                        <li>Construction and industrial activity</li>
+                        <li>Airports and flight paths</li>
+                        <li>Recreational noise and nightlife</li>
+                    </ul>
+                    <h4>Health Effects</h4>
+                    <p>Hearing loss, cardiovascular disease, sleep disturbance, cognitive impairment in children, stress, and mental health issues. Chronic exposure above 70 dB causes lasting damage.</p>
+                </div>
+                <span class="card-expand">Click to expand</span>
+            </div>
+
+            <div class="type-card" data-type="light">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                        <circle cx="32" cy="28" r="10" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M27 38h10v4a5 5 0 0 1-10 0v-4z" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M32 12v-2m14 7l1.5-1.5M46 28h2M18 28h-2m4.5-12.5L19 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>Light Pollution</h3>
+                <p class="card-preview">Excessive or misdirected artificial light disrupting ecosystems.</p>
+                <div class="card-details">
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <strong>83%</strong>
+                            <span>World under light-polluted skies</span>
+                        </div>
+                        <div class="detail-stat">
+                            <strong>2%/yr</strong>
+                            <span>Rate of increase globally</span>
+                        </div>
+                    </div>
+                    <h4>Major Sources</h4>
+                    <ul>
+                        <li>Street lighting and urban glow</li>
+                        <li>Commercial signage and advertising</li>
+                        <li>Sports facilities and parking lots</li>
+                        <li>Residential outdoor lighting</li>
+                    </ul>
+                    <h4>Health Effects</h4>
+                    <p>Disruption of circadian rhythms, insomnia, increased risk of obesity, depression, and certain cancers. Devastating effects on wildlife migration and reproduction.</p>
+                </div>
+                <span class="card-expand">Click to expand</span>
+            </div>
+
+            <div class="type-card" data-type="plastic">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                        <path d="M24 14h16l-2 18H26L24 14z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M22 36h20l2 14H20l2-14z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M28 36v-4m8 4v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>Plastic Pollution</h3>
+                <p class="card-preview">Accumulation of plastic products in the environment.</p>
+                <div class="card-details">
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <strong>380M</strong>
+                            <span>Tons produced yearly</span>
+                        </div>
+                        <div class="detail-stat">
+                            <strong>500yr</strong>
+                            <span>Time to decompose</span>
+                        </div>
+                    </div>
+                    <h4>Major Sources</h4>
+                    <ul>
+                        <li>Single-use packaging and containers</li>
+                        <li>Microplastics from synthetic textiles</li>
+                        <li>Fishing nets and marine equipment</li>
+                        <li>Electronic waste and construction debris</li>
+                    </ul>
+                    <h4>Health Effects</h4>
+                    <p>Microplastics found in human blood, lungs, and placentas. Linked to endocrine disruption, inflammation, and potential cancer risk. Over 100,000 marine animals die annually from plastic.</p>
+                </div>
+                <span class="card-expand">Click to expand</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Data Section -->
+<section class="section data-section" id="data">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Statistics</span>
+            <h2 class="section-title">Pollution by the Numbers</h2>
+            <p class="section-desc">Explore real-world pollution data through interactive visualizations.</p>
+        </div>
+
+        <div class="chart-controls">
+            <button class="chart-btn active" data-chart="emissions">Global Emissions</button>
+            <button class="chart-btn" data-chart="deaths">Deaths by Source</button>
+            <button class="chart-btn" data-chart="plastic">Plastic Production</button>
+            <button class="chart-btn" data-chart="aqi">City AQI Rankings</button>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="main-chart"></canvas>
+        </div>
+
+        <div class="data-insights" id="data-insights">
+            <div class="insight-card">
+                <div class="insight-icon">&#128200;</div>
+                <p>CO&#8322; emissions have increased by <strong>60%</strong> since 1990, with the top 10 countries responsible for over 67% of global emissions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive World Impact Map -->
+<section class="section impact-section" id="impact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Global Impact</span>
+            <h2 class="section-title">How Pollution Affects Our World</h2>
+            <p class="section-desc">Explore the interconnected effects of pollution across ecosystems and human life.</p>
+        </div>
+
+        <div class="impact-explorer">
+            <div class="impact-tabs">
+                <button class="impact-tab active" data-impact="health">Human Health</button>
+                <button class="impact-tab" data-impact="ocean">Ocean Life</button>
+                <button class="impact-tab" data-impact="climate">Climate Change</button>
+                <button class="impact-tab" data-impact="biodiversity">Biodiversity</button>
+            </div>
+
+            <div class="impact-content" id="impact-content">
+                <div class="impact-panel active" id="panel-health">
+                    <div class="impact-visual">
+                        <div class="body-diagram">
+                            <div class="body-outline">
+                                <svg viewBox="0 0 200 400" class="body-svg">
+                                    <ellipse cx="100" cy="40" rx="30" ry="35" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M70 75 Q60 100 55 140 L55 250 Q55 270 70 280 L70 380" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M130 75 Q140 100 145 140 L145 250 Q145 270 130 280 L130 380" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M70 75 L130 75" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M55 100 Q30 110 15 160" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M145 100 Q170 110 185 160" fill="none" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <div class="hotspot" style="top: 8%; left: 50%;" data-organ="brain">
+                                    <span class="hotspot-pulse"></span>
+                                    <div class="hotspot-tooltip">
+                                        <strong>Brain & Nervous System</strong>
+                                        <p>Air pollutants cross the blood-brain barrier, causing neuroinflammation. Linked to Alzheimer's, Parkinson's, and cognitive decline in children.</p>
+                                    </div>
+                                </div>
+                                <div class="hotspot" style="top: 25%; left: 50%;" data-organ="lungs">
+                                    <span class="hotspot-pulse"></span>
+                                    <div class="hotspot-tooltip">
+                                        <strong>Lungs & Respiratory</strong>
+                                        <p>Fine particulate matter (PM2.5) penetrates deep into lungs. Causes asthma, COPD, and lung cancer. 4.2M deaths annually from outdoor air pollution.</p>
+                                    </div>
+                                </div>
+                                <div class="hotspot" style="top: 30%; left: 35%;" data-organ="heart">
+                                    <span class="hotspot-pulse"></span>
+                                    <div class="hotspot-tooltip">
+                                        <strong>Heart & Cardiovascular</strong>
+                                        <p>Pollution causes inflammation of blood vessels, increasing heart attack and stroke risk. Responsible for 25% of all cardiovascular deaths globally.</p>
+                                    </div>
+                                </div>
+                                <div class="hotspot" style="top: 45%; left: 55%;" data-organ="liver">
+                                    <span class="hotspot-pulse"></span>
+                                    <div class="hotspot-tooltip">
+                                        <strong>Liver & Kidneys</strong>
+                                        <p>Heavy metals and chemical pollutants accumulate in organs. Lead, mercury, and cadmium cause chronic kidney disease and liver damage.</p>
+                                    </div>
+                                </div>
+                                <div class="hotspot" style="top: 55%; left: 45%;" data-organ="reproductive">
+                                    <span class="hotspot-pulse"></span>
+                                    <div class="hotspot-tooltip">
+                                        <strong>Reproductive System</strong>
+                                        <p>Endocrine disruptors from plastics and pesticides cause infertility, birth defects, and developmental disorders. Sperm counts have dropped 50% since 1970.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-info">
+                        <h3>Pollution's Toll on Human Health</h3>
+                        <p>Pollution affects virtually every organ system in the human body. Hover over the hotspots to see how different pollutants target specific organs.</p>
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <span class="metric-value">9M</span>
+                                <span class="metric-label">Premature deaths per year</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">1 in 6</span>
+                                <span class="metric-label">Deaths worldwide linked to pollution</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">$4.6T</span>
+                                <span class="metric-label">Annual economic cost (6.2% of GDP)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-panel" id="panel-ocean">
+                    <div class="impact-visual">
+                        <div class="ocean-layers">
+                            <div class="ocean-layer" data-depth="surface">
+                                <div class="layer-label">Surface (0-200m)</div>
+                                <div class="floating-debris">
+                                    <span class="debris debris-1">&#9741;</span>
+                                    <span class="debris debris-2">&#9741;</span>
+                                    <span class="debris debris-3">&#9741;</span>
+                                </div>
+                                <p>Oil slicks, floating plastic, and chemical runoff concentrate at the surface, blocking sunlight and releasing toxins.</p>
+                            </div>
+                            <div class="ocean-layer" data-depth="mid">
+                                <div class="layer-label">Mesopelagic (200-1000m)</div>
+                                <p>Microplastics are consumed by fish and zooplankton, entering the food chain. Noise pollution disrupts whale communication.</p>
+                            </div>
+                            <div class="ocean-layer" data-depth="deep">
+                                <div class="layer-label">Deep Ocean (1000m+)</div>
+                                <p>Plastic bags and debris found in the Mariana Trench (11,000m). Toxic sediments accumulate on the ocean floor, altering deep-sea ecosystems.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-info">
+                        <h3>Our Oceans Are Drowning in Waste</h3>
+                        <p>The ocean absorbs over 30% of CO&#8322; produced by humans and receives millions of tons of plastic waste each year.</p>
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <span class="metric-value">5.25T</span>
+                                <span class="metric-label">Plastic pieces in the ocean</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">500+</span>
+                                <span class="metric-label">Dead zones worldwide</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">50%</span>
+                                <span class="metric-label">Coral reefs lost since 1950</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-panel" id="panel-climate">
+                    <div class="impact-visual">
+                        <div class="temp-timeline">
+                            <h4>Global Temperature Anomaly</h4>
+                            <canvas id="temp-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="impact-info">
+                        <h3>The Climate-Pollution Connection</h3>
+                        <p>Air pollution and climate change are deeply intertwined. Fossil fuel burning is the primary driver of both crises.</p>
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <span class="metric-value">1.2°C</span>
+                                <span class="metric-label">Warming since pre-industrial era</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">420ppm</span>
+                                <span class="metric-label">Current CO&#8322; concentration</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2050</span>
+                                <span class="metric-label">Net-zero deadline for 1.5°C target</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-panel" id="panel-biodiversity">
+                    <div class="impact-visual">
+                        <div class="species-grid">
+                            <div class="species-card">
+                                <div class="species-icon">&#128011;</div>
+                                <h4>Sea Turtles</h4>
+                                <div class="threat-bar"><div class="threat-fill" style="width:70%"></div></div>
+                                <span class="threat-label">52% ingest plastic debris</span>
+                            </div>
+                            <div class="species-card">
+                                <div class="species-icon">&#128029;</div>
+                                <h4>Insects</h4>
+                                <div class="threat-bar"><div class="threat-fill" style="width:85%"></div></div>
+                                <span class="threat-label">40% species declining from pesticides</span>
+                            </div>
+                            <div class="species-card">
+                                <div class="species-icon">&#128038;</div>
+                                <h4>Seabirds</h4>
+                                <div class="threat-bar"><div class="threat-fill" style="width:60%"></div></div>
+                                <span class="threat-label">90% have plastic in stomachs</span>
+                            </div>
+                            <div class="species-card">
+                                <div class="species-icon">&#128031;</div>
+                                <h4>Fish</h4>
+                                <div class="threat-bar"><div class="threat-fill" style="width:55%"></div></div>
+                                <span class="threat-label">Microplastics found in 33% of fish caught</span>
+                            </div>
+                            <div class="species-card">
+                                <div class="species-icon">&#128008;</div>
+                                <h4>Pollinators</h4>
+                                <div class="threat-bar"><div class="threat-fill" style="width:75%"></div></div>
+                                <span class="threat-label">75% of crops depend on pollinators at risk</span>
+                            </div>
+                            <div class="species-card">
+                                <div class="species-icon">&#127882;</div>
+                                <h4>Coral Reefs</h4>
+                                <div class="threat-bar"><div class="threat-fill" style="width:90%"></div></div>
+                                <span class="threat-label">70-90% will die at 1.5°C warming</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-info">
+                        <h3>Mass Extinction in Progress</h3>
+                        <p>We are living through the 6th mass extinction event, largely driven by pollution and habitat destruction.</p>
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <span class="metric-value">1M</span>
+                                <span class="metric-label">Species threatened with extinction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">68%</span>
+                                <span class="metric-label">Wildlife population decline since 1970</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">150</span>
+                                <span class="metric-label">Species lost every day</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Quiz -->
+<section class="section quiz-section" id="quiz">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Test Yourself</span>
+            <h2 class="section-title">Pollution Knowledge Quiz</h2>
+            <p class="section-desc">How much do you know about the pollution crisis? Take this interactive quiz to find out.</p>
+        </div>
+
+        <div class="quiz-container" id="quiz-container">
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="quiz-progress-fill"></div>
+                </div>
+                <span class="progress-text" id="quiz-progress-text">Question 1 of 8</span>
+            </div>
+
+            <div class="quiz-question" id="quiz-question">
+                <h3 id="question-text"></h3>
+                <div class="quiz-options" id="quiz-options"></div>
+            </div>
+
+            <div class="quiz-result hidden" id="quiz-result">
+                <div class="result-score">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="var(--accent)" stroke-width="8" stroke-dasharray="339.29" stroke-dashoffset="339.29" id="score-ring" transform="rotate(-90 60 60)"/>
+                        </svg>
+                        <span class="score-number" id="score-number">0/8</span>
+                    </div>
+                </div>
+                <h3 id="result-title"></h3>
+                <p id="result-message"></p>
+                <button class="btn btn-primary" onclick="resetQuiz()">Try Again</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Carbon Footprint Calculator -->
+<section class="section calculator-section" id="calculator">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Interactive Tool</span>
+            <h2 class="section-title">Carbon Footprint Calculator</h2>
+            <p class="section-desc">Estimate your annual carbon footprint and discover ways to reduce it.</p>
+        </div>
+
+        <div class="calculator-container">
+            <div class="calc-form" id="calc-form">
+                <div class="calc-step active" data-step="1">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Transportation</h3>
+                    </div>
+                    <div class="calc-field">
+                        <label>How many miles do you drive per week?</label>
+                        <input type="range" id="driving" min="0" max="500" value="100" class="range-slider">
+                        <div class="range-labels">
+                            <span>0</span>
+                            <span class="range-value" id="driving-value">100 miles</span>
+                            <span>500</span>
+                        </div>
+                    </div>
+                    <div class="calc-field">
+                        <label>How many flights do you take per year?</label>
+                        <input type="range" id="flights" min="0" max="20" value="2" class="range-slider">
+                        <div class="range-labels">
+                            <span>0</span>
+                            <span class="range-value" id="flights-value">2 flights</span>
+                            <span>20</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary calc-next" data-next="2">Next: Home Energy</button>
+                </div>
+
+                <div class="calc-step" data-step="2">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Home Energy</h3>
+                    </div>
+                    <div class="calc-field">
+                        <label>Monthly electricity bill ($)</label>
+                        <input type="range" id="electricity" min="0" max="500" value="120" class="range-slider">
+                        <div class="range-labels">
+                            <span>$0</span>
+                            <span class="range-value" id="electricity-value">$120</span>
+                            <span>$500</span>
+                        </div>
+                    </div>
+                    <div class="calc-field">
+                        <label>Monthly gas/heating bill ($)</label>
+                        <input type="range" id="heating" min="0" max="300" value="60" class="range-slider">
+                        <div class="range-labels">
+                            <span>$0</span>
+                            <span class="range-value" id="heating-value">$60</span>
+                            <span>$300</span>
+                        </div>
+                    </div>
+                    <div class="calc-buttons">
+                        <button class="btn btn-secondary calc-prev" data-prev="1">Back</button>
+                        <button class="btn btn-primary calc-next" data-next="3">Next: Lifestyle</button>
+                    </div>
+                </div>
+
+                <div class="calc-step" data-step="3">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>Lifestyle</h3>
+                    </div>
+                    <div class="calc-field">
+                        <label>Diet type</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="diet" value="heavy-meat" checked>
+                                <span class="radio-custom"></span>
+                                Heavy Meat Eater
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="diet" value="moderate">
+                                <span class="radio-custom"></span>
+                                Moderate Meat
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="diet" value="vegetarian">
+                                <span class="radio-custom"></span>
+                                Vegetarian
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="diet" value="vegan">
+                                <span class="radio-custom"></span>
+                                Vegan
+                            </label>
+                        </div>
+                    </div>
+                    <div class="calc-field">
+                        <label>Shopping habits (new items per month)</label>
+                        <input type="range" id="shopping" min="0" max="30" value="8" class="range-slider">
+                        <div class="range-labels">
+                            <span>0</span>
+                            <span class="range-value" id="shopping-value">8 items</span>
+                            <span>30</span>
+                        </div>
+                    </div>
+                    <div class="calc-buttons">
+                        <button class="btn btn-secondary calc-prev" data-prev="2">Back</button>
+                        <button class="btn btn-primary" id="calc-submit">Calculate My Footprint</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-result hidden" id="calc-result">
+                <div class="result-header">
+                    <h3>Your Estimated Annual Carbon Footprint</h3>
+                </div>
+                <div class="footprint-display">
+                    <div class="footprint-number">
+                        <span id="footprint-value">0</span>
+                        <span class="footprint-unit">tons CO&#8322;/year</span>
+                    </div>
+                    <div class="footprint-comparison">
+                        <div class="comparison-bar-container">
+                            <div class="comparison-item">
+                                <span class="comparison-label">Your footprint</span>
+                                <div class="comparison-bar">
+                                    <div class="comparison-fill yours" id="your-bar"></div>
+                                </div>
+                                <span class="comparison-value" id="your-value"></span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-label">US Average</span>
+                                <div class="comparison-bar">
+                                    <div class="comparison-fill average" style="width: 80%"></div>
+                                </div>
+                                <span class="comparison-value">16.0t</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-label">Global Average</span>
+                                <div class="comparison-bar">
+                                    <div class="comparison-fill global" style="width: 24%"></div>
+                                </div>
+                                <span class="comparison-value">4.8t</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-label">Target (2050)</span>
+                                <div class="comparison-bar">
+                                    <div class="comparison-fill target" style="width: 10%"></div>
+                                </div>
+                                <span class="comparison-value">2.0t</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reduction-tips" id="reduction-tips">
+                    <h4>Top Ways to Reduce Your Footprint</h4>
+                </div>
+                <button class="btn btn-secondary" onclick="resetCalculator()">Recalculate</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Take Action Section -->
+<section class="section action-section" id="action">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Make a Difference</span>
+            <h2 class="section-title">Take Action Today</h2>
+            <p class="section-desc">Every action counts. Here's how you can help fight pollution in your daily life.</p>
+        </div>
+
+        <div class="action-timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-icon">&#127793;</div>
+                <div class="timeline-content">
+                    <h3>Start Small</h3>
+                    <ul class="action-list">
+                        <li>Carry a reusable water bottle and shopping bags</li>
+                        <li>Say no to single-use plastics and straws</li>
+                        <li>Turn off lights and unplug devices when not in use</li>
+                        <li>Walk or bike for short distances</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-icon">&#127757;</div>
+                <div class="timeline-content">
+                    <h3>Make Changes at Home</h3>
+                    <ul class="action-list">
+                        <li>Switch to energy-efficient LED bulbs</li>
+                        <li>Compost food waste and recycle properly</li>
+                        <li>Use eco-friendly cleaning products</li>
+                        <li>Reduce meat consumption — try Meatless Mondays</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-icon">&#128227;</div>
+                <div class="timeline-content">
+                    <h3>Spread the Word</h3>
+                    <ul class="action-list">
+                        <li>Share pollution facts with friends and family</li>
+                        <li>Support environmental organizations</li>
+                        <li>Contact your representatives about environmental policy</li>
+                        <li>Participate in local clean-up events</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-icon">&#127775;</div>
+                <div class="timeline-content">
+                    <h3>Think Big</h3>
+                    <ul class="action-list">
+                        <li>Consider solar panels or renewable energy providers</li>
+                        <li>Choose electric or hybrid vehicles</li>
+                        <li>Support companies with strong environmental practices</li>
+                        <li>Vote for leaders who prioritize the environment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pledge-section">
+            <div class="pledge-card">
+                <h3>Take the Pledge</h3>
+                <p>Commit to reducing your environmental impact. Select your pledges below:</p>
+                <div class="pledge-options" id="pledge-options">
+                    <label class="pledge-option">
+                        <input type="checkbox" value="plastic">
+                        <span class="pledge-check"></span>
+                        <span>I will reduce single-use plastic</span>
+                    </label>
+                    <label class="pledge-option">
+                        <input type="checkbox" value="transport">
+                        <span class="pledge-check"></span>
+                        <span>I will use public transport or bike more</span>
+                    </label>
+                    <label class="pledge-option">
+                        <input type="checkbox" value="energy">
+                        <span class="pledge-check"></span>
+                        <span>I will reduce energy consumption</span>
+                    </label>
+                    <label class="pledge-option">
+                        <input type="checkbox" value="food">
+                        <span class="pledge-check"></span>
+                        <span>I will eat less meat</span>
+                    </label>
+                    <label class="pledge-option">
+                        <input type="checkbox" value="spread">
+                        <span class="pledge-check"></span>
+                        <span>I will educate others about pollution</span>
+                    </label>
+                    <label class="pledge-option">
+                        <input type="checkbox" value="local">
+                        <span class="pledge-check"></span>
+                        <span>I will participate in local clean-ups</span>
+                    </label>
+                </div>
+                <button class="btn btn-primary" id="pledge-btn" disabled>Make My Pledge</button>
+                <div class="pledge-confirmation hidden" id="pledge-confirmation">
+                    <div class="confetti-container" id="confetti"></div>
+                    <h4>Thank you for your commitment!</h4>
+                    <p>Together, we can make a difference. Share your pledge:</p>
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="sharePledge('twitter')">Share on X</button>
+                        <button class="share-btn" onclick="sharePledge('copy')">Copy Link</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <span class="logo-icon">&#127758;</span>
+                    <span>PollutionAware</span>
+                </div>
+                <p>An interactive educational resource about the global pollution crisis. Data sourced from WHO, EPA, UN Environment Programme, and peer-reviewed research.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#types">Types of Pollution</a></li>
+                    <li><a href="#data">Data & Statistics</a></li>
+                    <li><a href="#impact">Global Impact</a></li>
+                    <li><a href="#quiz">Knowledge Quiz</a></li>
+                    <li><a href="#calculator">Carbon Calculator</a></li>
+                    <li><a href="#action">Take Action</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="https://www.who.int/health-topics/air-pollution" target="_blank" rel="noopener">WHO Air Quality</a></li>
+                    <li><a href="https://www.epa.gov/" target="_blank" rel="noopener">US EPA</a></li>
+                    <li><a href="https://www.unep.org/" target="_blank" rel="noopener">UN Environment</a></li>
+                    <li><a href="https://www.ipcc.ch/" target="_blank" rel="noopener">IPCC Reports</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PollutionAware. Built to raise awareness.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
